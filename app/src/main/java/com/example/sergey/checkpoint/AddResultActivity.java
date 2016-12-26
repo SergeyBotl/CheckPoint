@@ -19,12 +19,12 @@ import java.util.Comparator;
 import java.util.List;
 
 public class AddResultActivity extends AppCompatActivity {
-    ArrayAdapter<?> adapter;
-    Spinner spinner;
-    ComandaDao comandaDao = new ComandaDao();
-    ResultDao resultDao = new ResultDao();
-    List<String> comandaNameList = new ArrayList<>(comandaDao.getColumnName());
-    EditText editText;
+    private ArrayAdapter<?> adapter;
+    private Spinner spinner;
+    private ComandaDao comandaDao = new ComandaDao();
+    private ResultDao resultDao = new ResultDao();
+    private List<String> comandaNameList = new ArrayList<>(comandaDao.getColumnName());
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class AddResultActivity extends AppCompatActivity {
     }
 
 
-        @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.save, menu);
         return true;

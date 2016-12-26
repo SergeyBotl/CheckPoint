@@ -21,10 +21,10 @@ import java.util.Comparator;
 import java.util.List;
 
 public class StartActivity extends AppCompatActivity {
-    ListView listView;
-    ArrayAdapter<Result> adapter;
-    ResultDao resultDao=new ResultDao();
-    List<Result>resultsList=new ArrayList<>(resultDao.getAll());
+    private ListView listView;
+    private ArrayAdapter<Result> adapter;
+    private ResultDao resultDao = new ResultDao();
+    private List<Result> resultsList = new ArrayList<>(resultDao.getAll());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +40,10 @@ public class StartActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               Result result= resultsList.get(i);
-                Intent intent=new Intent(StartActivity.this,InfoActivity.class);
-                intent.putExtra("NameComanda",result.getNameComanda().toString());
-                Log.d("Tag",""+result.getNameComanda().toString());
+                Result result = resultsList.get(i);
+                Intent intent = new Intent(StartActivity.this, InfoActivity.class);
+                intent.putExtra("NameComanda", result.getNameComanda().toString());
+                Log.d("Tag", "" + result.getNameComanda().toString());
                 startActivity(intent);
             }
         });
@@ -66,12 +66,12 @@ public class StartActivity extends AppCompatActivity {
         }
     }
 
-    List<Result>getlist(){
+    List<Result> getlist() {
 
-        Collections .sort(resultsList, new Comparator<Result>() {
+        Collections.sort(resultsList, new Comparator<Result>() {
             @Override
             public int compare(Result result, Result t1) {
-                return result.getBall()-t1.getBall();
+                return result.getBall() - t1.getBall();
             }
         });
         return resultsList;

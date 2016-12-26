@@ -10,8 +10,8 @@ import android.widget.TextView;
 import com.example.sergey.checkpoint.dao.ComandaDao;
 
 public class InfoActivity extends AppCompatActivity {
-    TextView textView;
-    ComandaDao comandaDao = new ComandaDao();
+    private TextView textView;
+    private ComandaDao comandaDao = new ComandaDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class InfoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Информация о команде");
 
-        String s=getIntent().getStringExtra("NameComanda");
+        String s = getIntent().getStringExtra("NameComanda");
 
         textView
                 .setText(
