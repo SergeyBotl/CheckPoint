@@ -10,6 +10,7 @@ public class ComandaDao implements DAO<Comanda> {
    static List<Comanda>list=new ArrayList<>();
 
     public ComandaDao() {
+       save(new Comanda("Sokol"));
        save(new Comanda("Dinamo"));
     }
 

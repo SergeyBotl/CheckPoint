@@ -25,7 +25,11 @@ public class InfoActivity extends AppCompatActivity {
 
         String s=getIntent().getStringExtra("NameComanda");
 
-        textView.setText(comandaDao.findByName(s).toString());
+        textView
+                .setText(
+                        comandaDao
+                                .findByName(s)
+                                .toString());
     }
 
     @Override

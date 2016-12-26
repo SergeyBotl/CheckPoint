@@ -3,6 +3,7 @@ package com.example.sergey.checkpoint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,10 +39,11 @@ public class StartActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                final Comanda item = (Comanda) adapterView
+                final Result item = (Result) adapterView
                         .getItemAtPosition(i);
                 Intent intent=new Intent(StartActivity.this,InfoActivity.class);
-                intent.putExtra("NameComanda",item.getNameComanda());
+                intent.putExtra("NameComanda",item.getNameComanda().toString());
+                Log.d("Tag",""+item.getNameComanda().toString());
                 startActivity(intent);
             }
         });
