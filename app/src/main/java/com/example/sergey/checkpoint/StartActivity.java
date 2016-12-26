@@ -24,7 +24,7 @@ public class StartActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayAdapter<Result> adapter;
     private ResultDao resultDao = new ResultDao();
-    private List<Result> resultsList = new ArrayList<>(resultDao.getAll());
+    private List<Result> resultsList ;//= new ArrayList<>(resultDao.getAll());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +33,6 @@ public class StartActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Таблица ");
         listView = (ListView) findViewById(R.id.listView);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getlist());
-        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -48,9 +46,14 @@ public class StartActivity extends AppCompatActivity {
         });
     }
 
+   
     @Override
     protected void onStart() {
-        adapter.notifyDataSetChanged();
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getlist());
+        listView.setAdapter(adapter);
+
+        Log.d("Tag", "onStart" );
+        //adapter.notifyDataSetChanged();
         super.onStart();
     }
 
@@ -72,7 +75,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     List<Result> getlist() {
-
+        resultsList = new ArrayList<>(resultDao.getAll());
         Collections.sort(resultsList, new Comparator<Result>() {
             @Override
             public int compare(Result result, Result t1) {

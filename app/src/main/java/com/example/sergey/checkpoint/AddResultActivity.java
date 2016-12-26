@@ -42,6 +42,8 @@ public class AddResultActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
     }
 
+
+
     List<String> getlist() {
 
         Collections.sort(comandaNameList, new Comparator<String>() {
@@ -71,7 +73,8 @@ public class AddResultActivity extends AppCompatActivity {
             case R.id.save:
                 String s = (String) spinner.getSelectedItem();
                 resultDao.save(new Result(comandaDao.findByName(s), editText.getText().toString()));
-                Log.d("Tag","AddResultActivity- s: "+s+" "+comandaDao.findByName(s)+" ||| "+editText.getText().toString());
+                Log.d("Tag", "AddResultActivity- s: " + s + " " + comandaDao.findByName(s) + " ||| " + editText.getText().toString());
+                editText.setText("");
                 return true;
             default:
                 return true;
