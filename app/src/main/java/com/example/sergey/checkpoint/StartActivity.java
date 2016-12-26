@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.sergey.checkpoint.dao.ResultDao;
+import com.example.sergey.checkpoint.entity.Comanda;
 import com.example.sergey.checkpoint.entity.Result;
 
 import java.util.Collections;
@@ -32,6 +35,16 @@ public class StartActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getlist());
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                final Comanda item = (Comanda) adapterView
+                        .getItemAtPosition(i);
+                Intent intent=new Intent(StartActivity.this,InfoActivity.class);
+                intent.putExtra("NameComanda",item.getNameComanda());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

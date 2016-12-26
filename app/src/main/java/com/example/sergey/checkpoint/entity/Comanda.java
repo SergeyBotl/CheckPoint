@@ -45,6 +45,9 @@ public class Comanda {
 
     @Override
     public String toString() {
-        return  nameComanda ;
+        return "Comanda{\n" +
+                "id=" + id +
+                ", \nnameComanda='" + nameComanda + '\'' +
+                '}';
     }
 }

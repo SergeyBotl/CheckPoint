@@ -23,7 +23,9 @@ public class InfoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Информация о команде");
 
-        textView.setText(comandaDao.getAll().toString());
+        String s=getIntent().getStringExtra("NameComanda");
+
+        textView.setText(comandaDao.findByName(s).toString());
     }
 
     @Override
@@ -34,10 +36,10 @@ public class InfoActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.home:
-
+            case android.R.id.home:
                 Intent intent = new Intent(this, StartActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
             default:
                 return true;

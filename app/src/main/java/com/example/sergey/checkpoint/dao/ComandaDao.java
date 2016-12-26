@@ -23,4 +23,21 @@ public class ComandaDao implements DAO<Comanda> {
     public List<Comanda> getAll() {
         return list;
     }
+
+    public List<String> getColumnName(){
+        List<String>listName=new ArrayList<>();
+        for (Comanda c:list){
+            listName.add(c.getNameComanda());
+        }
+        return listName;
+    }
+
+    public Comanda findByName(String s){
+        for (Comanda c:list){
+            if (c.getNameComanda().equals(s)){
+                return c;
+            }
+        }
+        return null;
+    }
 }

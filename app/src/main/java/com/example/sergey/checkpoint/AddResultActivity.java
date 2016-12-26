@@ -23,7 +23,7 @@ public class AddResultActivity extends AppCompatActivity {
     Spinner spinner;
     ComandaDao comandaDao = new ComandaDao();
     ResultDao resultDao = new ResultDao();
-    List<Comanda> comandaList = new ArrayList<>(comandaDao.getAll());
+    List<String> comandaNameList = new ArrayList<>(comandaDao.getColumnName());
     EditText editText;
 
     @Override
@@ -41,18 +41,19 @@ public class AddResultActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
     }
 
-    List<Comanda> getlist() {
+    List<String> getlist() {
 
-        Collections.sort(comandaList, new Comparator<Comanda>() {
+        Collections.sort(comandaNameList, new Comparator<String>() {
             @Override
-            public int compare(Comanda comanda, Comanda t1) {
-                return comanda.getNameComanda().compareTo(t1.getNameComanda());
+            public int compare(String s, String t1) {
+                return s.compareTo(t1);
             }
         });
-        return comandaList;
+        return comandaNameList;
     }
 
-    @Override
+
+        @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.save, menu);
         return true;
