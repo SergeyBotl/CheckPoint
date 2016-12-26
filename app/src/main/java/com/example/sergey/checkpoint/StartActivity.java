@@ -15,6 +15,7 @@ import com.example.sergey.checkpoint.dao.ResultDao;
 import com.example.sergey.checkpoint.entity.Comanda;
 import com.example.sergey.checkpoint.entity.Result;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -23,7 +24,7 @@ public class StartActivity extends AppCompatActivity {
     ListView listView;
     ArrayAdapter<Result> adapter;
     ResultDao resultDao=new ResultDao();
-    List<Result>resultsList;
+    List<Result>resultsList=new ArrayList<>(resultDao.getAll());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +40,10 @@ public class StartActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                final Result item = (Result) adapterView
-                        .getItemAtPosition(i);
+               Result result= resultsList.get(i);
                 Intent intent=new Intent(StartActivity.this,InfoActivity.class);
-                intent.putExtra("NameComanda",item.getNameComanda().toString());
-                Log.d("Tag",""+item.getNameComanda().toString());
+                intent.putExtra("NameComanda",result.getNameComanda().toString());
+                Log.d("Tag",""+result.getNameComanda().toString());
                 startActivity(intent);
             }
         });
@@ -67,7 +67,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     List<Result>getlist(){
-        resultsList=resultDao.getAll();
+
         Collections .sort(resultsList, new Comparator<Result>() {
             @Override
             public int compare(Result result, Result t1) {

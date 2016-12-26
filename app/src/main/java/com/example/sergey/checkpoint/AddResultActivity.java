@@ -68,8 +68,8 @@ public class AddResultActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.save:
-                Comanda c = (Comanda) spinner.getSelectedItem();
-                resultDao.save(new Result(c, editText.getText().toString()));
+                String s = (String) spinner.getSelectedItem();
+                resultDao.save(new Result(comandaDao.findByName(s), editText.getText().toString()));
                 return true;
             default:
                 return true;
