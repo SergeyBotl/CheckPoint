@@ -27,7 +27,7 @@ public class InfoActivity extends AppCompatActivity {
 
         String s = getIntent().getStringExtra("NameComanda");
         Comanda comanda=comandaDao.findByName(s);
-        Log.d("Tag","s: "+s);
+        Log.d("Tag","s: "+s+" "+comanda);
         textView.setText("");
     }
 

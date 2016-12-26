@@ -49,6 +49,12 @@ public class StartActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        adapter.notifyDataSetChanged();
+        super.onStart();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.start, menu);
         return true;

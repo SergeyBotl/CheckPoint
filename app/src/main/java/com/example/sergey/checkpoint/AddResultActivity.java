@@ -2,6 +2,7 @@ package com.example.sergey.checkpoint;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -70,6 +71,7 @@ public class AddResultActivity extends AppCompatActivity {
             case R.id.save:
                 String s = (String) spinner.getSelectedItem();
                 resultDao.save(new Result(comandaDao.findByName(s), editText.getText().toString()));
+                Log.d("Tag","AddResultActivity- s: "+s+" "+comandaDao.findByName(s)+" ||| "+editText.getText().toString());
                 return true;
             default:
                 return true;
