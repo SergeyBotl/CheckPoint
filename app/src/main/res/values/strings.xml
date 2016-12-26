@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CheckPoint</string>
+    <string name="add_result">добавить резултат</string>
+    <string name="info_comanda">сведения</string>
+</resources>
