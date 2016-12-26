@@ -15,8 +15,6 @@ public class Result {
         this.ball = ball;
     }
 
-
-
     public long getId() {
         return id;
     }
@@ -33,14 +31,6 @@ public class Result {
         this.nameComanda = nameComanda;
     }
 
-    public int getBall() {
-        return ballInt;
-    }
-
-    public void setBall(int ball) {
-        this.ballInt = ball;
-    }
-
     public int getBallInt() {
         return ballInt;
     }
@@ -49,8 +39,32 @@ public class Result {
         this.ballInt = ballInt;
     }
 
+    public String getBall() {
+        return ball;
+    }
+
     public void setBall(String ball) {
         this.ball = ball;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Result result = (Result) o;
+
+        if (nameComanda != null ? !nameComanda.equals(result.nameComanda) : result.nameComanda != null)
+            return false;
+        return ball != null ? ball.equals(result.ball) : result.ball == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = nameComanda != null ? nameComanda.hashCode() : 0;
+        result = 31 * result + (ball != null ? ball.hashCode() : 0);
+        return result;
     }
 
     @Override

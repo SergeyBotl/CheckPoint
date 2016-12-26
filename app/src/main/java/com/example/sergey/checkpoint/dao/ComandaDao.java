@@ -3,7 +3,9 @@ package com.example.sergey.checkpoint.dao;
 import com.example.sergey.checkpoint.entity.Comanda;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ComandaDao implements DAO<Comanda> {
 
@@ -26,11 +28,11 @@ public class ComandaDao implements DAO<Comanda> {
     }
 
     public List<String> getColumnName(){
-        List<String>listName=new ArrayList<>();
+        Set<String> listName=new HashSet<>();
         for (Comanda c:list){
             listName.add(c.getNameComanda());
         }
-        return listName;
+        return new ArrayList<>(listName);
     }
 
     public Comanda findByName(String s){

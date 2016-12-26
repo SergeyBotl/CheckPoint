@@ -33,7 +33,7 @@ public class AddResultActivity extends AppCompatActivity {
 
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setTitle("Добавить результат ");
         editText = (EditText) findViewById(R.id.editTextBalls);
         spinner = (Spinner) findViewById(R.id.spinner);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getlist());

@@ -3,11 +3,13 @@ package com.example.sergey.checkpoint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.sergey.checkpoint.dao.ComandaDao;
+import com.example.sergey.checkpoint.entity.Comanda;
 
 public class InfoActivity extends AppCompatActivity {
     private TextView textView;
@@ -24,12 +26,9 @@ public class InfoActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Информация о команде");
 
         String s = getIntent().getStringExtra("NameComanda");
-
-        textView
-                .setText(
-                        comandaDao
-                                .findByName(s)
-                                .toString());
+        Comanda comanda=comandaDao.findByName(s);
+        Log.d("Tag","s: "+s);
+        textView.setText("");
     }
 
     @Override

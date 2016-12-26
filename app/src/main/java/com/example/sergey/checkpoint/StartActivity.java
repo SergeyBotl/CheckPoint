@@ -31,7 +31,6 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-
         getSupportActionBar().setTitle("Таблица ");
         listView = (ListView) findViewById(R.id.listView);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getlist());
@@ -43,7 +42,7 @@ public class StartActivity extends AppCompatActivity {
                 Result result = resultsList.get(i);
                 Intent intent = new Intent(StartActivity.this, InfoActivity.class);
                 intent.putExtra("NameComanda", result.getNameComanda().toString());
-                Log.d("Tag", "" + result.getNameComanda().toString());
+                //Log.d("Tag", "" + result.getNameComanda().toString());
                 startActivity(intent);
             }
         });
@@ -71,9 +70,10 @@ public class StartActivity extends AppCompatActivity {
         Collections.sort(resultsList, new Comparator<Result>() {
             @Override
             public int compare(Result result, Result t1) {
-                return result.getBall() - t1.getBall();
+                return result.getBall().compareTo(t1.getBall());
             }
-        });
+
+    });
         return resultsList;
     }
 }
