@@ -10,29 +10,58 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.sergey.checkpoint.AddResultActivity">
 
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="17dp"
-        android:id="@+id/spinner"
-        android:layout_alignStart="@+id/textView5" />
-
-    <Spinner
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerBall"
-        android:layout_alignTop="@+id/textView5"
-        android:layout_alignParentEnd="true" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:id="@+id/linear_layout">
 
     <TextView
-        android:text="Балы"
+        android:text="@string/Comanda"
+        android:layout_weight="1"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView5"
-        android:layout_marginTop="55dp"
-        android:layout_below="@+id/spinner"
-        android:layout_toStartOf="@+id/spinnerBall"
-        android:layout_marginEnd="29dp" />
+        android:id="@+id/textView5" />
+
+    <TextView
+        android:text="@string/ball"
+        android:layout_weight="1"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6" />
+
+</LinearLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/linear_layout"
+       android:orientation="horizontal"
+       android:layout_margin="10dp"
+       android:id="@+id/linear_layout2">
+
+       <Spinner
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:id="@+id/spinner"/>
+
+       <Spinner
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:id="@+id/spinnerBall"
+            />
+   </LinearLayout>
+
+    <CalendarView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/calendarView"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_below="@+id/linear_layout2"/>
 </RelativeLayout>

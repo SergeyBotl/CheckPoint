@@ -25,7 +25,7 @@ public class StartActivity extends AppCompatActivity {
     private ArrayAdapter<Result> adapter;
     private ResultDao resultDao = new ResultDao();
     private List<Result> resultsList ;//= new ArrayList<>(resultDao.getAll());
-
+   private CustomAdapter customAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +33,7 @@ public class StartActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Таблица ");
         listView = (ListView) findViewById(R.id.listView);
+
 
         View header= getLayoutInflater().inflate(R.layout.header, null);
         listView.addHeaderView(header);
@@ -53,8 +54,9 @@ public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        customAdapter=new CustomAdapter(this,R.layout.custom_adapter,getlist());
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getlist());
-        listView.setAdapter(adapter);
+        listView.setAdapter(customAdapter);
         Log.d("Tag", "onStart" );
         //adapter.notifyDataSetChanged();
         super.onStart();

@@ -1,20 +1,34 @@
 package com.example.sergey.checkpoint.entity;
 
+
 import android.text.Editable;
 
-public class Result {
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+public class Result {
+    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
     private long id;
     private Comanda nameComanda;
     private int ballInt;
     private String ball;
+    private String date;
 
 
-    public Result(Comanda nameComanda, String ball) {
+    public Result(Date date, Comanda nameComanda, String ball) {
+        this.date =sdf.format(date) ;
         this.nameComanda = nameComanda;
         this.ball = ball;
         this.ballInt = Integer.parseInt(ball);
 
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public long getId() {
@@ -71,8 +85,8 @@ public class Result {
 
     @Override
     public String toString() {
-        return  "id=" + id +
+        return "id=" + id +
                 ", nameComanda=" + nameComanda +
-                ", ball=" + ball ;
+                ", ball=" + ball;
     }
 }

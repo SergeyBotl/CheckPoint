@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class AddResultActivity extends AppCompatActivity {
@@ -28,8 +30,8 @@ public class AddResultActivity extends AppCompatActivity {
     private ComandaDao comandaDao = new ComandaDao();
     private ResultDao resultDao = new ResultDao();
     private List<String> comandaNameList = new ArrayList<>(comandaDao.getColumnName());
-
-    List<Integer>list=new ArrayList<>(Arrays.asList(0,1,3));
+    private CalendarView calendarView;
+    List<Integer> list = new ArrayList<>(Arrays.asList(0, 1, 3));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +42,16 @@ public class AddResultActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Добавить результат ");
 
+        calendarView = (CalendarView) findViewById(R.id.calendarView);
         spinner = (Spinner) findViewById(R.id.spinner);
         spinnerBall = (Spinner) findViewById(R.id.spinnerBall);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getlist());
-        adapterBall = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, list );
+        adapterBall = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapterBall.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinnerBall.setAdapter(adapterBall);
     }
-
 
 
     List<String> getlist() {
@@ -79,10 +81,12 @@ public class AddResultActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.save:
-               // editText.getText().toString()
+                // editText.getText().toString()
                 String s = (String) spinner.getSelectedItem();
-                resultDao.save(new Result(comandaDao.findByName(s),spinnerBall.getSelectedItem().toString() ));
-                Log.d("Tag", "AddResultActivity- s: " + s + " " + comandaDao.findByName(s) + " ||| " + spinnerBall.getSelectedItem().toString() );
+                Date date =new Date(calendarView.getDate()) ;
+
+                resultDao.save(new Result(date, comandaDao.findByName(s), spinnerBall.getSelectedItem().toString()));
+                Log.d("Tag", "AddResultActivity- s: " + s + " " + comandaDao.findByName(s) + " ||| " + spinnerBall.getSelectedItem().toString());
 
                 return true;
             default:

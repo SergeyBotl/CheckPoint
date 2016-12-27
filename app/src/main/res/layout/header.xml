@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="10dp"
+    android:orientation="horizontal">
 
     <TextView
-        android:text="@string/date_play"
-        android:layout_width="120dp"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-
-        android:id="@+id/textView2" />
-
-    <TextView
-        android:text="@string/comanda"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/textView4"
-        android:id="@+id/textView3"
-        android:layout_row="0"
-        android:layout_column="2" />
+        android:layout_weight="2"
+        android:text="@string/date_play" />
 
     <TextView
-        android:text="@string/ball"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
         android:id="@+id/textView4"
-        android:layout_row="0"
-        android:layout_column="6"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/textView2" />
-</RelativeLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="@string/comanda" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/ball" />
+</LinearLayout>

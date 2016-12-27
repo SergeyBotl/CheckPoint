@@ -1,10 +1,10 @@
 package com.example.sergey.checkpoint.dao;
 
-import com.example.sergey.checkpoint.R;
 import com.example.sergey.checkpoint.entity.Comanda;
 import com.example.sergey.checkpoint.entity.Result;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,7 +15,7 @@ public class ResultDao implements DAO<Result> {
     public ResultDao() {
         ComandaDao comandaDao = new ComandaDao();
         Comanda comanda = comandaDao.findByName("Sokol");
-        save(new Result(comanda, "2"));
+        save(new Result(new Date(),comanda, "2"));
     }
 
     @Override
