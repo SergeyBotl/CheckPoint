@@ -1,4 +1,6 @@
-package com.example.sergey.checkpoint;
+package com.example.sergey.checkpoint.dao;
+
+import com.example.sergey.checkpoint.entity.User;
 
 public class CurentUser {
     private static CurentUser userDAO;

@@ -72,6 +72,10 @@ public class StartActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, AddResultActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.results:
+                 intent = new Intent(this, TabResultActivity.class);
+                startActivity(intent);
+                return true;
             default:
                 return true;
         }

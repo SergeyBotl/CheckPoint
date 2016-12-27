@@ -1,4 +1,4 @@
-package com.example.sergey.checkpoint;
+package com.example.sergey.checkpoint.entity;
 
 public class User {
 

@@ -3,6 +3,7 @@ package com.example.sergey.checkpoint.entity;
 public class Comanda {
     private long id;
     private String nameComanda;
+    private int sumBall;
 
     public Comanda() {
     }
@@ -25,6 +26,14 @@ public class Comanda {
 
     public void setNameComanda(String nameComanda) {
         this.nameComanda = nameComanda;
+    }
+
+    public int getSumBall() {
+        return sumBall;
+    }
+
+    public void setSumBall(int sumBall) {
+        this.sumBall = sumBall;
     }
 
     @Override

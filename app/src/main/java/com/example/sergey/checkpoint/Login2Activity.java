@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.sergey.checkpoint.dao.CurentUser;
+import com.example.sergey.checkpoint.entity.User;
+
 public class Login2Activity extends AppCompatActivity {
 
 
