@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,12 +17,12 @@ import com.example.sergey.checkpoint.entity.Comanda;
 import com.example.sergey.checkpoint.entity.Result;
 
 public class InfoActivity extends AppCompatActivity {
-     TextView textView;
+    TextView textView;
     private ComandaDao comandaDao = new ComandaDao();
-    private ResultDao resultDao=new ResultDao();
-     ArrayAdapter <Result>adapter;
-     ListView listView;
-
+    private ResultDao resultDao = new ResultDao();
+    ArrayAdapter<Result> adapter;
+    ListView listView;
+    CustomAdapter customAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,17 +34,19 @@ public class InfoActivity extends AppCompatActivity {
         Log.d("Tag", "s: " + s + " ++ ");
         textView.setText("" + comanda.toString());
 
-         listView=(ListView)findViewById(R.id.listViewComanda);
-        adapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,resultDao.allResultsForComanda(s));
-        listView.setAdapter(adapter);
+
+        customAdapter=new CustomAdapter(this,R.layout.custom_adapter,resultDao.allResultsForComanda(s));
+        listView = (ListView) findViewById(R.id.listViewComanda);
+
+        View header= getLayoutInflater().inflate(R.layout.header, null);
+        listView.addHeaderView(header);
+        
+        listView.setAdapter(customAdapter);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Информация о команде");
 
-
-
     }
-
 
 
     @Override
