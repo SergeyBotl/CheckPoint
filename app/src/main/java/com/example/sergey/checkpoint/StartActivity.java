@@ -40,7 +40,7 @@ public class StartActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               final Result result = resultsList.get(i);
+               final Result result = (Result)adapterView.getItemAtPosition(i);
                 String s=result.getNameComanda().getNameComanda();
                 Intent intent = new Intent(StartActivity.this, InfoActivity.class);
                 intent.putExtra("NameComanda", result.getNameComanda().getNameComanda());
