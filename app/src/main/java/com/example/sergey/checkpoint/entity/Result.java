@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Result {
-    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy");
     private long id;
     private Comanda nameComanda;
     private int ballInt;
@@ -16,6 +16,7 @@ public class Result {
 
 
     public Result(Date date, Comanda nameComanda, String ball) {
+
         this.date =sdf.format(date) ;
         this.nameComanda = nameComanda;
         this.ball = ball;

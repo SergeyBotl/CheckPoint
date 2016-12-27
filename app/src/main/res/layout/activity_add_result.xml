@@ -56,7 +56,13 @@
            android:id="@+id/spinnerBall"
             />
    </LinearLayout>
-
+<TextView
+    android:id="@+id/textDateCalendar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/linear_layout2"
+    android:layout_margin="20dp"
+    android:text="date"/>
     <CalendarView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

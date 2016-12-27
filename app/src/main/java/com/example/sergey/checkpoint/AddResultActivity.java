@@ -10,17 +10,21 @@ import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sergey.checkpoint.dao.ComandaDao;
 import com.example.sergey.checkpoint.dao.ResultDao;
 import com.example.sergey.checkpoint.entity.Comanda;
 import com.example.sergey.checkpoint.entity.Result;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class AddResultActivity extends AppCompatActivity {
@@ -30,8 +34,10 @@ public class AddResultActivity extends AppCompatActivity {
     private ComandaDao comandaDao = new ComandaDao();
     private ResultDao resultDao = new ResultDao();
     private List<String> comandaNameList = new ArrayList<>(comandaDao.getColumnName());
-    private CalendarView calendarView;
+    private Date date;
+    TextView textDateCalendar;
     List<Integer> list = new ArrayList<>(Arrays.asList(0, 1, 3));
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +48,8 @@ public class AddResultActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Добавить результат ");
 
-        calendarView = (CalendarView) findViewById(R.id.calendarView);
+
+        textDateCalendar = (TextView) findViewById(R.id.textDateCalendar);
         spinner = (Spinner) findViewById(R.id.spinner);
         spinnerBall = (Spinner) findViewById(R.id.spinnerBall);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getlist());
@@ -51,8 +58,17 @@ public class AddResultActivity extends AppCompatActivity {
         adapterBall.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinnerBall.setAdapter(adapterBall);
-    }
 
+        CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
+                date = new Date(year, month, dayOfMonth);
+                textDateCalendar.setText(simpleDateFormat.format(date));
+                // Toast.makeText(getApplicationContext(), date + "/" + month + "/" + year, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     List<String> getlist() {
 
@@ -64,7 +80,6 @@ public class AddResultActivity extends AppCompatActivity {
         });
         return comandaNameList;
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,13 +96,9 @@ public class AddResultActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.save:
-                // editText.getText().toString()
                 String s = (String) spinner.getSelectedItem();
-                Date date =new Date(calendarView.getDate()) ;
-
                 resultDao.save(new Result(date, comandaDao.findByName(s), spinnerBall.getSelectedItem().toString()));
                 Log.d("Tag", "AddResultActivity- s: " + s + " " + comandaDao.findByName(s) + " ||| " + spinnerBall.getSelectedItem().toString());
-
                 return true;
             default:
                 return true;
