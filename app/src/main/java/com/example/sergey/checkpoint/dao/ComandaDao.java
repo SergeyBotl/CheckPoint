@@ -39,10 +39,9 @@ public class ComandaDao implements DAO<Comanda> {
     }
 
     public Comanda findByName(String s){
-
         for (Comanda c:getAll()){
-            Log.d("Tag","s: "+s+" !!!!comanda  "+c);
             if (c.getNameComanda().equals(s)){
+                Log.d("Tag","s: "+s+" !!!!comanda  "+c);
                 return c;
             }
         }

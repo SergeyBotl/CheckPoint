@@ -34,24 +34,27 @@ public class StartActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Таблица ");
         listView = (ListView) findViewById(R.id.listView);
 
+        View header= getLayoutInflater().inflate(R.layout.header, null);
+        listView.addHeaderView(header);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Result result = resultsList.get(i);
+               final Result result = resultsList.get(i);
+                String s=result.getNameComanda().getNameComanda();
                 Intent intent = new Intent(StartActivity.this, InfoActivity.class);
-                intent.putExtra("NameComanda", result.getNameComanda().toString());
+                intent.putExtra("NameComanda", result.getNameComanda().getNameComanda());
                 //Log.d("Tag", "" + result.getNameComanda().toString());
                 startActivity(intent);
             }
         });
     }
 
-   
+
     @Override
     protected void onStart() {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getlist());
         listView.setAdapter(adapter);
-
         Log.d("Tag", "onStart" );
         //adapter.notifyDataSetChanged();
         super.onStart();
