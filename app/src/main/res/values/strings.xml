@@ -2,4 +2,7 @@
     <string name="app_name">CheckPoint</string>
     <string name="add_result">добавить резултат</string>
     <string name="info_comanda">просмотреть результаты</string>
+    <string name="ball">Очки</string>
+    <string name="comanda">Команда</string>
+    <string name="date_play">Дата игры</string>
 </resources>

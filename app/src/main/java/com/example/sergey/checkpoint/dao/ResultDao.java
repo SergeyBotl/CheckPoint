@@ -1,5 +1,6 @@
 package com.example.sergey.checkpoint.dao;
 
+import com.example.sergey.checkpoint.R;
 import com.example.sergey.checkpoint.entity.Comanda;
 import com.example.sergey.checkpoint.entity.Result;
 
@@ -9,12 +10,10 @@ import java.util.List;
 import java.util.Set;
 
 public class ResultDao implements DAO<Result> {
-    ComandaDao comandaDao = new ComandaDao();
-    static Set<Result> set = new HashSet<>();
-    static List<Result> list;
+    private static Set<Result> set = new HashSet<>();
 
     public ResultDao() {
-        //Comanda comanda = new Comanda("Sokol");
+        ComandaDao comandaDao = new ComandaDao();
         Comanda comanda = comandaDao.findByName("Sokol");
         save(new Result(comanda, "2"));
     }
@@ -28,7 +27,7 @@ public class ResultDao implements DAO<Result> {
 
     @Override
     public List<Result> getAll() {
-        return list = new ArrayList<>(set);
+        return new ArrayList<>(set);
     }
 
     public List<Result> allResultsForComanda(String s) {
@@ -39,5 +38,14 @@ public class ResultDao implements DAO<Result> {
             }
         }
         return listResult;
+    }
+    public int sumBall(String nameComand){
+        int sum=0;
+        for (Result r:getAll()){
+            if (r.getNameComanda().getNameComanda().equals(nameComand)){
+                sum+=r.getBallInt();
+            }
+        }
+        return sum;
     }
 }

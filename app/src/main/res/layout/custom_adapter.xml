@@ -7,17 +7,5 @@
     android:orientation="vertical">
 
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:id="@+id/tabrow">
-
-        <TextView
-            android:id="@+id/ev1"/>
-        <TextView
-            android:id="@+id/ev2"/>
-        <TextView
-            android:id="@+id/ev3"/>
-    </TableRow>
-
+   
 </TableLayout>

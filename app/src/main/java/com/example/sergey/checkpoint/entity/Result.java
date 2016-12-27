@@ -13,6 +13,8 @@ public class Result {
     public Result(Comanda nameComanda, String ball) {
         this.nameComanda = nameComanda;
         this.ball = ball;
+        this.ballInt = Integer.parseInt(ball);
+
     }
 
     public long getId() {
