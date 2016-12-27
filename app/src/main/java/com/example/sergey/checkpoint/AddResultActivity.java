@@ -1,5 +1,6 @@
 package com.example.sergey.checkpoint;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,17 +16,20 @@ import com.example.sergey.checkpoint.entity.Comanda;
 import com.example.sergey.checkpoint.entity.Result;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class AddResultActivity extends AppCompatActivity {
     private ArrayAdapter<?> adapter;
-    private Spinner spinner;
+    private ArrayAdapter<?> adapterBall;
+    private Spinner spinner, spinnerBall;
     private ComandaDao comandaDao = new ComandaDao();
     private ResultDao resultDao = new ResultDao();
     private List<String> comandaNameList = new ArrayList<>(comandaDao.getColumnName());
-    private EditText editText;
+
+    List<Integer>list=new ArrayList<>(Arrays.asList(0,1,3));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +39,15 @@ public class AddResultActivity extends AppCompatActivity {
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Добавить результат ");
-        editText = (EditText) findViewById(R.id.editTextBalls);
+
         spinner = (Spinner) findViewById(R.id.spinner);
+        spinnerBall = (Spinner) findViewById(R.id.spinnerBall);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getlist());
+        adapterBall = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, list );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterBall.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinnerBall.setAdapter(adapterBall);
     }
 
 
@@ -71,10 +79,11 @@ public class AddResultActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.save:
+               // editText.getText().toString()
                 String s = (String) spinner.getSelectedItem();
-                resultDao.save(new Result(comandaDao.findByName(s), editText.getText().toString()));
-                Log.d("Tag", "AddResultActivity- s: " + s + " " + comandaDao.findByName(s) + " ||| " + editText.getText().toString());
-                editText.setText("");
+                resultDao.save(new Result(comandaDao.findByName(s),spinnerBall.getSelectedItem().toString() ));
+                Log.d("Tag", "AddResultActivity- s: " + s + " " + comandaDao.findByName(s) + " ||| " + spinnerBall.getSelectedItem().toString() );
+
                 return true;
             default:
                 return true;
