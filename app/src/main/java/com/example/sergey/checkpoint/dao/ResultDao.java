@@ -15,7 +15,9 @@ public class ResultDao implements DAO<Result> {
     public ResultDao() {
         ComandaDao comandaDao = new ComandaDao();
         Comanda comanda = comandaDao.findByName("Sokol");
-        save(new Result(new Date(),comanda, "2"));
+        Comanda dinamo = comandaDao.findByName("Dinamo");
+        save(new Result(new Date(),comanda, "1"));
+        save(new Result(new Date(),dinamo, "3"));
     }
 
     @Override

@@ -40,7 +40,7 @@ public class InfoActivity extends AppCompatActivity {
 
         View header= getLayoutInflater().inflate(R.layout.header, null);
         listView.addHeaderView(header);
-        
+
         listView.setAdapter(customAdapter);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

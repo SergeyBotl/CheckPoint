@@ -24,8 +24,9 @@ public class StartActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayAdapter<Result> adapter;
     private ResultDao resultDao = new ResultDao();
-    private List<Result> resultsList ;//= new ArrayList<>(resultDao.getAll());
-   private CustomAdapter customAdapter;
+    private List<Result> resultsList;//= new ArrayList<>(resultDao.getAll());
+    private CustomAdapter customAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,14 +36,14 @@ public class StartActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
 
 
-        View header= getLayoutInflater().inflate(R.layout.header, null);
+        View header = getLayoutInflater().inflate(R.layout.header, null);
         listView.addHeaderView(header);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               final Result result = (Result)adapterView.getItemAtPosition(i);
-                String s=result.getNameComanda().getNameComanda();
+                final Result result = (Result) adapterView.getItemAtPosition(i);
+                String s = result.getNameComanda().getNameComanda();
                 Intent intent = new Intent(StartActivity.this, InfoActivity.class);
                 intent.putExtra("NameComanda", result.getNameComanda().getNameComanda());
                 //Log.d("Tag", "" + result.getNameComanda().toString());
@@ -54,10 +55,10 @@ public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        customAdapter=new CustomAdapter(this,R.layout.custom_adapter,getlist());
+        customAdapter = new CustomAdapter(this, R.layout.custom_adapter, getlist());
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getlist());
         listView.setAdapter(customAdapter);
-        Log.d("Tag", "onStart" );
+        Log.d("Tag", "onStart");
         //adapter.notifyDataSetChanged();
         super.onStart();
     }
@@ -75,7 +76,7 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.results:
-                 intent = new Intent(this, TabResultActivity.class);
+                intent = new Intent(this, TabResultActivity.class);
                 startActivity(intent);
                 return true;
             default:
@@ -91,7 +92,7 @@ public class StartActivity extends AppCompatActivity {
                 return result.getBall().compareTo(t1.getBall());
             }
 
-    });
+        });
         return resultsList;
     }
 }
