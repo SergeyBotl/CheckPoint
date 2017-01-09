@@ -9,12 +9,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ComandaDao implements DAO<Team> {
+public class TeamDao implements DAO<Team> {
 
     static Set<Team> set = new HashSet<>();
 
 
-    public ComandaDao() {
+    public TeamDao() {
         save(new Team("Sokol"));
         save(new Team("Dinamo"));
     }

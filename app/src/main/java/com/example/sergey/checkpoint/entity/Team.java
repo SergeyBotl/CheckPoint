@@ -54,9 +54,9 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Comanda{" +
+        return "Team{" +
                 "id=" + id +
-                ", nameComanda='" + name + '\'' +
+                ", nameTeam='" + name + '\'' +
                 '}';
     }
 }

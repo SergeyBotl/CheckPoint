@@ -1,4 +1,4 @@
-package com.example.sergey.checkpoint.addresult;
+package com.example.sergey.checkpoint.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.MenuItem;
 
 import com.example.sergey.checkpoint.R;
 
-public class NameComandActivity extends AppCompatActivity {
+public class NameTeamActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,4 +1,4 @@
-package com.example.sergey.checkpoint;
+package com.example.sergey.checkpoint.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,10 +6,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.example.sergey.checkpoint.R;
 import com.example.sergey.checkpoint.adapter.CustomAdapterTabResult;
 import com.example.sergey.checkpoint.api.Controller;
 
-public class TabResultActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity {
     private Controller controller=new Controller();
     private CustomAdapterTabResult customAdapter;
     private ListView listView;

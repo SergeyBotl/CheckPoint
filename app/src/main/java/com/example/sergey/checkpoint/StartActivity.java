@@ -8,11 +8,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.sergey.checkpoint.adapter.CustomAdapter;
-import com.example.sergey.checkpoint.addresult.AddResultActivity;
+import com.example.sergey.checkpoint.activity.AboutTeamActivity;
+import com.example.sergey.checkpoint.activity.ResultActivity;
+import com.example.sergey.checkpoint.activity.AddResultActivity;
+import com.example.sergey.checkpoint.api.Controller;
 import com.example.sergey.checkpoint.dao.ResultDao;
 import com.example.sergey.checkpoint.entity.Result;
 
@@ -22,9 +24,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class StartActivity extends AppCompatActivity {
+    private Controller controller = new Controller();
     private ListView listView;
-    private ResultDao resultDao = new ResultDao();
-    private List<Result> resultsList;
     private CustomAdapter customAdapter;
 
     @Override
@@ -42,7 +43,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 final Result result = (Result) adapterView.getItemAtPosition(i);
-                 Intent intent = new Intent(StartActivity.this, InfoActivity.class);
+                Intent intent = new Intent(StartActivity.this, AboutTeamActivity.class);
                 intent.putExtra("NameComanda", result.getTeam().getName());
                 //Log.d("Tag", "" + result.getNameComanda().toString());
                 startActivity(intent);
@@ -53,10 +54,10 @@ public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        customAdapter = new CustomAdapter(this, R.layout.custom_adapter, getlist());
-         listView.setAdapter(customAdapter);
+        customAdapter = new CustomAdapter(this, R.layout.custom_adapter, controller.getResultList());
+        listView.setAdapter(customAdapter);
         Log.d("Tag", "onStart");
-         super.onStart();
+        super.onStart();
     }
 
     @Override
@@ -72,7 +73,7 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.show_results:
-                intent = new Intent(this, TabResultActivity.class);
+                intent = new Intent(this, ResultActivity.class);
                 startActivity(intent);
                 return true;
             default:
@@ -80,14 +81,5 @@ public class StartActivity extends AppCompatActivity {
         }
     }
 
-    List<Result> getlist() {
-        resultsList = new ArrayList<>(resultDao.getAll());
-        Collections.sort(resultsList, new Comparator<Result>() {
-            @Override
-            public int compare(Result result, Result t1) {
-                return result.getBallInt()-t1.getBallInt();
-            }
-        });
-        return resultsList;
-    }
+
 }

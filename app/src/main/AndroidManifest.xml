@@ -9,9 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".StartActivity"></activity>
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".addresult.AddResultActivity" />
-        <activity android:name=".addresult.NameComandActivity" />
+        <activity android:name=".activity.AboutTeamActivity" />
+        <activity android:name=".activity.AddResultActivity" />
+        <activity android:name=".activity.NameTeamActivity" />
         <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TabResultActivity"></activity>
+        <activity android:name=".activity.ResultActivity"></activity>
     </application>
 
 </manifest>
