@@ -56,7 +56,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onStart() {
         customAdapter = new CustomAdapter(this, R.layout.custom_adapter, controller.getResultList());
         listView.setAdapter(customAdapter);
-        Log.d("Tag", "onStart");
+       // Log.d("Tag", "onStart");
         super.onStart();
     }
 
