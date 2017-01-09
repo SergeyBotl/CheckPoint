@@ -2,47 +2,47 @@ package com.example.sergey.checkpoint.dao;
 
 import android.util.Log;
 
-import com.example.sergey.checkpoint.entity.Comanda;
+import com.example.sergey.checkpoint.entity.Team;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ComandaDao implements DAO<Comanda> {
+public class ComandaDao implements DAO<Team> {
 
-    static Set<Comanda> set = new HashSet<>();
+    static Set<Team> set = new HashSet<>();
 
 
     public ComandaDao() {
-        save(new Comanda("Sokol"));
-        save(new Comanda("Dinamo"));
+        save(new Team("Sokol"));
+        save(new Team("Dinamo"));
     }
 
 
 
     @Override
-    public void save(Comanda comanda) {
+    public void save(Team comanda) {
         comanda.setId(set.size() + 1);
         set.add(comanda);
     }
 
     @Override
-    public List<Comanda> getAll() {
+    public List<Team> getAll() {
         return new ArrayList<>(set);
     }
 
     public List<String> getColumnName() {
         Set<String> listName = new HashSet<>();
-        for (Comanda c : getAll()) {
-            listName.add(c.getNameComanda());
+        for (Team c : getAll()) {
+            listName.add(c.getName());
         }
         return new ArrayList<>(listName);
     }
 
-    public Comanda findByName(String s) {
-        for (Comanda c : getAll()) {
-            if (c.getNameComanda().equals(s)) {
+    public Team findByName(String s) {
+        for (Team c : getAll()) {
+            if (c.getName().equals(s)) {
                 Log.d("Tag", "s: " + s + " !!!!comanda  " + c);
                 return c;
             }

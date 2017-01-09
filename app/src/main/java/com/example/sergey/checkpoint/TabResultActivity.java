@@ -2,25 +2,17 @@ package com.example.sergey.checkpoint;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.example.sergey.checkpoint.dao.ComandaDao;
-import com.example.sergey.checkpoint.dao.Controller;
-import com.example.sergey.checkpoint.dao.ResultDao;
-import com.example.sergey.checkpoint.entity.Comanda;
-import com.example.sergey.checkpoint.entity.Result;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.sergey.checkpoint.adapter.CustomAdapterTabResult;
+import com.example.sergey.checkpoint.api.Controller;
 
 public class TabResultActivity extends AppCompatActivity {
-    Controller controller=new Controller();
-    CustomAdapterTabResult customAdapter;
-
-    ListView listView;
+    private Controller controller=new Controller();
+    private CustomAdapterTabResult customAdapter;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

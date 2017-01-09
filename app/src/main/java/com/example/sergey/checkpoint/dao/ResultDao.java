@@ -1,10 +1,8 @@
 package com.example.sergey.checkpoint.dao;
 
-import com.example.sergey.checkpoint.entity.Comanda;
 import com.example.sergey.checkpoint.entity.Result;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,11 +11,11 @@ public class ResultDao implements DAO<Result> {
     private static Set<Result> set = new HashSet<>();
 
     public ResultDao() {
-        ComandaDao comandaDao = new ComandaDao();
+      /*  ComandaDao comandaDao = new ComandaDao();
         Comanda comanda = comandaDao.findByName("Sokol");
         Comanda dinamo = comandaDao.findByName("Dinamo");
         save(new Result(new Date(),comanda, "1"));
-        save(new Result(new Date(),dinamo, "3"));
+        save(new Result(new Date(),dinamo, "3"));*/
     }
 
     @Override
@@ -35,7 +33,7 @@ public class ResultDao implements DAO<Result> {
     public List<Result> allResultsForComanda(String s) {
         List<Result> listResult = new ArrayList<>();
         for (Result r : getAll()) {
-            if (r.getNameComanda().getNameComanda().equals(s)) {
+            if (r.getTeam().getName().equals(s)) {
                 listResult.add(r);
             }
         }
@@ -44,7 +42,7 @@ public class ResultDao implements DAO<Result> {
     public int sumBall(String nameComand){
         int sum=0;
         for (Result r:getAll()){
-            if (r.getNameComanda().getNameComanda().equals(nameComand)){
+            if (r.getTeam().getName().equals(nameComand)){
                 sum+=r.getBallInt();
             }
         }

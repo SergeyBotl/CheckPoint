@@ -1,4 +1,4 @@
-package com.example.sergey.checkpoint;
+package com.example.sergey.checkpoint.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,10 +10,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.sergey.checkpoint.R;
+import com.example.sergey.checkpoint.StartActivity;
 import com.example.sergey.checkpoint.dao.CurentUser;
 import com.example.sergey.checkpoint.entity.User;
 
-public class Login2Activity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
 
     private CurentUser userDao = CurentUser.getUserDAO();
@@ -30,7 +32,7 @@ public class Login2Activity extends AppCompatActivity {
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login2);
+        setContentView(R.layout.activity_login);
 
         preferences = getSharedPreferences(NAME_PREFERENCES, Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -46,7 +48,7 @@ public class Login2Activity extends AppCompatActivity {
                 Log.i("TAG", "buttonLogIn");
                 if (getUser() != null && userDao.isLogin(getUser())) {
                     editor.putBoolean(NAME_PREFERENCES_IS, true).apply();
-                    Intent intent = new Intent(Login2Activity.this, StartActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, StartActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
@@ -83,7 +85,7 @@ public class Login2Activity extends AppCompatActivity {
         Log.i("TAG", "onStart");
         mLogin = preferences.getBoolean(NAME_PREFERENCES_IS, false);
         if (mLogin) {
-            startActivity(new Intent(Login2Activity.this, StartActivity.class));
+            startActivity(new Intent(LoginActivity.this, StartActivity.class));
             Log.i("TAG", "login ok ===========");
             finish();
         }

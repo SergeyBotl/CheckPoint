@@ -6,13 +6,13 @@
     tools:context=".MainActivity">
 
     <item
-        android:id="@+id/add"
+        android:id="@+id/add_result"
         android:icon="@android:drawable/ic_input_add"
         android:orderInCategory="100"
         android:title="@string/add_result"
         app:showAsAction="withText" />
     <item
-        android:id="@+id/results"
+        android:id="@+id/show_results"
         android:icon="@android:drawable/ic_input_add"
         android:orderInCategory="100"
         android:title="@string/info_comanda"

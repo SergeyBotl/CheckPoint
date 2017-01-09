@@ -1,15 +1,15 @@
 package com.example.sergey.checkpoint.entity;
 
-public class Comanda {
+public class Team {
     private long id;
-    private String nameComanda;
+    private String name;
     private int sumBall;
 
-    public Comanda() {
+    public Team() {
     }
 
-    public Comanda(String nameComanda) {
-        this.nameComanda = nameComanda;
+    public Team(String nameTeam) {
+        this.name = nameTeam;
     }
 
     public long getId() {
@@ -20,12 +20,12 @@ public class Comanda {
         this.id = id;
     }
 
-    public String getNameComanda() {
-        return nameComanda;
+    public String getName() {
+        return name;
     }
 
-    public void setNameComanda(String nameComanda) {
-        this.nameComanda = nameComanda;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getSumBall() {
@@ -41,22 +41,22 @@ public class Comanda {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Comanda comanda = (Comanda) o;
+        Team comanda = (Team) o;
 
-        return nameComanda != null ? nameComanda.equals(comanda.nameComanda) : comanda.nameComanda == null;
+        return name != null ? name.equals(comanda.name) : comanda.name == null;
 
     }
 
     @Override
     public int hashCode() {
-        return nameComanda != null ? nameComanda.hashCode() : 0;
+        return name != null ? name.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         return "Comanda{" +
                 "id=" + id +
-                ", nameComanda='" + nameComanda + '\'' +
+                ", nameComanda='" + name + '\'' +
                 '}';
     }
 }

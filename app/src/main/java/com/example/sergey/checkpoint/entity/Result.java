@@ -1,27 +1,21 @@
 package com.example.sergey.checkpoint.entity;
 
-
-import android.text.Editable;
-
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Result {
-    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy");
+public class Result implements Serializable {
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy");
     private long id;
-    private Comanda nameComanda;
+    private Team team;
     private int ballInt;
-    private String ball;
     private String date;
 
 
-    public Result(Date date, Comanda nameComanda, String ball) {
-
-        this.date =sdf.format(date) ;
-        this.nameComanda = nameComanda;
-        this.ball = ball;
-        this.ballInt = Integer.parseInt(ball);
-
+    public Result(Date date, Team team, int ball) {
+        this.date = sdf.format(date);
+        this.team = team;
+        this.ballInt = ball;
     }
 
     public String getDate() {
@@ -40,54 +34,45 @@ public class Result {
         this.id = id;
     }
 
-    public Comanda getNameComanda() {
-        return nameComanda;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setNameComanda(Comanda nameComanda) {
-        this.nameComanda = nameComanda;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public int getBallInt() {
         return ballInt;
     }
 
-    public void setBallInt(int ballInt) {
-        this.ballInt = ballInt;
-    }
-
-    public String getBall() {
-        return ball;
-    }
-
-    public void setBall(String ball) {
-        this.ball = ball;
-    }
-
-    @Override
+     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Result result = (Result) o;
 
-        if (nameComanda != null ? !nameComanda.equals(result.nameComanda) : result.nameComanda != null)
-            return false;
-        return ball != null ? ball.equals(result.ball) : result.ball == null;
+        if (id != result.id) return false;
+        if (ballInt != result.ballInt) return false;
+        if (team != null ? !team.equals(result.team) : result.team != null) return false;
+        return date != null ? date.equals(result.date) : result.date == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = nameComanda != null ? nameComanda.hashCode() : 0;
-        result = 31 * result + (ball != null ? ball.hashCode() : 0);
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (team != null ? team.hashCode() : 0);
+        result = 31 * result + ballInt;
+        result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "id=" + id +
-                ", nameComanda=" + nameComanda +
-                ", ball=" + ball;
+                ", nameComanda=" + team +
+                ", ball=" + ballInt;
     }
 }

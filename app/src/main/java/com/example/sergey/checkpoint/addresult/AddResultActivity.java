@@ -1,6 +1,5 @@
-package com.example.sergey.checkpoint;
+package com.example.sergey.checkpoint.addresult;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,19 +7,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sergey.checkpoint.R;
 import com.example.sergey.checkpoint.dao.ComandaDao;
 import com.example.sergey.checkpoint.dao.ResultDao;
-import com.example.sergey.checkpoint.entity.Comanda;
 import com.example.sergey.checkpoint.entity.Result;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -35,9 +34,9 @@ public class AddResultActivity extends AppCompatActivity {
     private ResultDao resultDao = new ResultDao();
     private List<String> comandaNameList = new ArrayList<>(comandaDao.getColumnName());
     private Date date;
-    TextView textDateCalendar;
-    List<Integer> list = new ArrayList<>(Arrays.asList(0, 1, 3));
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yy");
+    private TextView textDateCalendar;
+    private List<Integer> list = new ArrayList<>(Arrays.asList(0, 1, 3));
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +62,10 @@ public class AddResultActivity extends AppCompatActivity {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
-                date = new Date(year, month, dayOfMonth);
+                Calendar calendar=new GregorianCalendar(year, month, dayOfMonth);
+               // date = new Date(year, month, dayOfMonth);
+                date = new Date(calendar.getTimeInMillis());
+                //textDateCalendar.setText(simpleDateFormat.format(date));
                 textDateCalendar.setText(simpleDateFormat.format(date));
                 // Toast.makeText(getApplicationContext(), date + "/" + month + "/" + year, Toast.LENGTH_SHORT).show();
             }
@@ -97,7 +99,13 @@ public class AddResultActivity extends AppCompatActivity {
                 return true;
             case R.id.save:
                 String s = (String) spinner.getSelectedItem();
-                resultDao.save(new Result(date, comandaDao.findByName(s), spinnerBall.getSelectedItem().toString()));
+                if (date!=null){
+                    resultDao.save(new Result(date, comandaDao.findByName(s), Integer.parseInt(spinnerBall.getSelectedItem().toString())));
+                    Toast.makeText(this,"Запись сохранена",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(this,"Заполните все поля пожалуйста",Toast.LENGTH_SHORT).show();
+                }
+
                 Log.d("Tag", "AddResultActivity- s: " + s + " " + comandaDao.findByName(s) + " ||| " + spinnerBall.getSelectedItem().toString());
                 return true;
             default:

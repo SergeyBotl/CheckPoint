@@ -10,9 +10,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".StartActivity"></activity>
         <activity android:name=".InfoActivity" />
-        <activity android:name=".AddResultActivity" />
-        <activity android:name=".NameComandActivity" />
-        <activity android:name=".Login2Activity">
+        <activity android:name=".addresult.AddResultActivity" />
+        <activity android:name=".addresult.NameComandActivity" />
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
