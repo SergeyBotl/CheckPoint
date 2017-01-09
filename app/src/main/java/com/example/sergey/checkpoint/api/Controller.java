@@ -18,7 +18,6 @@ public class Controller {
         List<Team> list = new ArrayList<>(teamDao.getAll());
         for (Team c : list) {
             c.setSumBall(resultDao.sumBall(c.getName()));
-
         }
         return list;
     }
